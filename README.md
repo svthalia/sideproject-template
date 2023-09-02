@@ -9,4 +9,12 @@ Some examples from the past where such a template would be useful are:
 
 This template contains the following stuff:
 
-- A [Terraform](https://developer.hashicorp.com/terraform) configuration to manage cloud infrastructure on AWS.
+- A reusable [Terraform](https://developer.hashicorp.com/terraform) module to manage cloud infrastructure on AWS.
+  This can be used in your own repository without copying the source, as shown in the [example](terraform/sideproject/examples/examplecie/main.tf), by using:
+  ```terraform
+  module "sideproject" {
+      source = "github.com/svthalia/sideproject-template//terraform/sideproject?ref=main"
+      # ...
+  }
+  ```
+

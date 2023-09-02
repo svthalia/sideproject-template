@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">= 5.15.0"
+    }
+  }
+}
+
 locals {
   tags = {
     Name        = "thalia-${var.stage}-${var.project_name}"
@@ -6,11 +15,6 @@ locals {
     Environment = var.stage,
     Terraform   = true
   }
-}
-
-provider "aws" {
-  profile = "thalia"
-  region  = "eu-west-1"
 }
 
 module "network" {
@@ -42,7 +46,7 @@ module "buckets" {
   for_each    = var.s3_buckets
   tags        = local.tags
   name_suffix = each.key
-  versioning  = each.value.versioning_status
+  versioning  = each.value.versioning
   ec2_role_id = module.server.ec2_role_id
 }
 

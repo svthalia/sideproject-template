@@ -14,7 +14,7 @@ resource "aws_s3_bucket_versioning" "this" {
 
 
 # Policy to allow an EC2 instance to access the bucket.
-resource "aws_iam_role_policy" "concrexit-iam-role-policy" {
+resource "aws_iam_role_policy" "this" {
   name   = "${var.tags.Name}-${var.name_suffix}-policy"
   role   = var.ec2_role_id
   policy = <<EOF
